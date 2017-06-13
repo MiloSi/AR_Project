@@ -32,11 +32,12 @@ int main()
 		int height = frame.rows;
 
 		cvtColor(frame, gray, COLOR_BGR2GRAY);
+		resize(gray, gray, Size(width * 0.5, height * 0.5));
 		equalizeHist(gray, gray);
 
-		resize(gray, gray, Size(width * 0.5, height * 0.5));
-
 		vector<Rect> rects;
+
+		//It takes lots of times.
 		fd.detectMultiScale(gray, rects, 1.1, 2, 0);
 
 		for (Rect object : rects) {
